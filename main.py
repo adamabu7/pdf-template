@@ -15,7 +15,7 @@ for index, row in df.iterrows():
          ln=1, border=1)
     pdf.line(10, 21, 200, 21) #x1, y1, x2, y2 distances in mm.
 
-pdf.output("output.pdf"
+pdf.output("output.pdf")
 
 # Individual way to create pages.
 # pdf.add_page()
