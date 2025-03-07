@@ -14,7 +14,11 @@ for index, row in df.iterrows():
     pdf.set_text_color(100, 100, 100) # Color combination for R G B respectively range from 0 to 254.
     pdf.cell(w=0, h=12, txt=row["Topic"], align="L",
          ln=1)          # border=1
-    pdf.line(10, 21, 200, 21) #x1, y1, x2, y2 distances in mm.
+
+    # Add lines to first page
+    for y in range(20, 298, 10):
+        pdf.line(x1=10, y1=y, x2=200, y2=y)
+    # pdf.line(10, 21, 200, 21) #x1, y1, x2, y2 distances in mm.
 
     # Set the footer
     pdf.ln(265)
@@ -22,8 +26,13 @@ for index, row in df.iterrows():
     pdf.set_text_color(180,180,180)
     pdf.cell(w=0, h=10, txt=row["Topic"], align="R")
 
+
     for i in range(row["Pages"] - 1):
         pdf.add_page()
+
+        # Add lines to all the rest of the pages
+        for y in range(25, 298, 10):
+            pdf.line(x1=10, y1=y, x2=200, y2=y)
 
         # Set the footer
         pdf.ln(277)         # Take 265 + h=12 from header to adjust the position of the footer.
